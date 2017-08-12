@@ -1,0 +1,51 @@
+<div class="movie-poster-container">
+<img class="full-width" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + result.poster_path}}" (click)="clickPoster()" (mouseover)="showCover = true">
+<div [hidden]="!showCover" (mouseleave)="showCover = false" class="movie-poster-cover" (click)="clickCover()">
+    <p class="right mouse-change" style="float:right" *ngIf="!isFavorite" 
+        (click)="favoriteMovie(result); $event.stopPropagation();">
+        <span title="Save to Favorites" class="glyphicon glyphicon-heart-empty"></span>
+    </p>
+    <p class="right mouse-change" style="float:right" *ngIf="isFavorite" 
+        (click)="unfavoriteMovie(result); $event.stopPropagation();">
+        <span title="Remove from Favorites" class="glyphicon glyphicon-heart"></span>
+    </p>
+    <h2>{{result.title}} ({{result.release_date | date: 'yyyy'}})</h2>
+    <p>{{result.overview}}</p> 
+    <!--| overview:300-->
+    
+    <div class="bottom full-width" style="padding-bottom:40px">
+        <div *ngIf="result.rateMovie_averageRating > 0">Average Rating: {{result.rateMovie_averageRating | number: 1}} Stars</div>
+        <div *ngIf="!result.rateMovie_averageRating">No user ratings yet</div>
+        <span (click)="rateMovie(result, 1); $event.stopPropagation();">
+            <span *ngIf="!result.rateMovie_userRating < 1" class="glyphicon glyphicon-star-empty"></span>
+            <span *ngIf="result.rateMovie_userRating < 1" class="glyphicon glyphicon-star"></span>
+        </span>
+        <span (click)="rateMovie(result, 2); $event.stopPropagation();">
+            <span *ngIf="!result.rateMovie_userRating < 2" class="glyphicon glyphicon-star-empty"></span>
+            <span *ngIf="result.rateMovie_userRating < 2" class="glyphicon glyphicon-star"></span>
+        </span>
+        <span (click)="rateMovie(result, 3); $event.stopPropagation();">
+            <span *ngIf="!result.rateMovie_userRating < 3" class="glyphicon glyphicon-star-empty"></span>
+            <span *ngIf="result.rateMovie_userRating < 3" class="glyphicon glyphicon-star"></span>
+        </span>
+        <span (click)="rateMovie(result, 4); $event.stopPropagation();">
+            <span *ngIf="!result.rateMovie_userRating < 4" class="glyphicon glyphicon-star-empty"></span>
+            <span *ngIf="result.rateMovie_userRating < 4" class="glyphicon glyphicon-star"></span>
+        </span>
+        <span (click)="rateMovie(result, 5); $event.stopPropagation();">
+            <span *ngIf="!result.rateMovie_userRating < 5" class="glyphicon glyphicon-star-empty"></span>
+            <span *ngIf="result.rateMovie_userRating < 5" class="glyphicon glyphicon-star"></span>
+        </span>
+        
+    </div>
+    <p class="bottom left mouse-change" ng-repeat="source in (result.sources.purchase_web_sources) | sourceFilter: ['youtube_purchase']" >
+    <a href="{{source?.link}}" target="_blank"><span (click)="$event.stopPropagation();" title="Watch Trailer"class="glyphicon glyphicon-film"></span></a>
+    </p>
+    <p class="bottom right mouse-change"><a href="/similar/{{result.id}}"><span title="find similar movie"class="glyphicon glyphicon-search"></span></a></p>
+</div>
+</div>
+
+<div class="row streaming-sources-container">
+<!--<a class="col-xs-3 col-sm-3 col-md-3 col-lg-3" href="{{source.link}}" ng-repeat="source in (result.sources.subscription_web_sources) | sourceFilter: allSources" target="_blank"><img [src]="{{('public/img/' + source.source + '_m_img.jpg')}}"></a>
+<a class="col-xs-3 col-sm-3 col-md-3 col-lg-3" href="{{source.link}}" ng-repeat="source in (result.sources.purchase_web_sources) | sourceFilter: allSources" target="_blank"><img [src]="{{('public/img/' + source.source + '_m_img.jpg')}}"></a>-->
+</div>

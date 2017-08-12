@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from 'app/home/home.component';
 import { SearchComponent } from 'app/search/search/search.component';
+import { LoginComponent } from 'app/login/login.component';
 
 const routes: Routes = [
   {
@@ -9,15 +10,19 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'search/:query',
+    path: 'home/login',
+    component: LoginComponent
+  },
+  {
+    path: 'home/search/:query',
     component: SearchComponent
   },
   {
-    path: 'category/:category',
+    path: 'home/category/:category',
     component: SearchComponent
   },
   {
-    path: 'similar/:similarID',
+    path: 'home/similar/:similarID',
     component: SearchComponent
   },
   {

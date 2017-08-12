@@ -1,0 +1,104 @@
+
+<div class="row" class="padding-10">
+  
+          <div class="col-md-5" >
+
+            <!-- LOGIN -->
+            <form ng-submit="signIn()" id="signinForm" class="form-horizontal" method="get">
+              <fieldset>
+                <div id="legend">
+                  <legend class="">Login</legend>
+                  <p *ngIf="signinFailure" class="error">{{signinFailure}}</p>
+                </div>
+                <div class="control-group">
+                  <!-- E-mail -->
+                  <label class="control-label" for="email">E-mail / Username</label>
+                  <div class="controls">
+                    <input type="text" id="email" name="email" placeholder="" class="input-xlarge" autofocus ng-model="signinEmail">
+                    <p>Email Address used during account creation</p>
+                  </div>
+                </div>
+             
+                <div class="control-group">
+                  <!-- Password-->
+                  <label class="control-label" for="password">Password</label>
+                  <div class="controls">
+                    <input type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model="signinPassword">
+                    <p>Forgot password?</p>
+                  </div>
+                </div>
+             
+                <div class="control-group">
+                  <!-- Button -->
+                  <div class="controls">
+                    <input type="submit" class="btn btn-success" value="Login">
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+            <div class="padding-top">
+                <a href="auth/facebook" class="btn btn-block btn-facebook btn-social"><i class="fa fa-facebook"></i>Sign in with Facebook</a>
+                <a href="auth/twitter" class="btn btn-block btn-twitter btn-social"><i class="fa fa-twitter"></i>Sign in with Twitter</a>
+                <a href="auth/google" class="btn btn-block btn-google btn-social"><i class="fa fa-google"></i>Sign in with Google</a>
+                <a href="auth/github" class="btn btn-block btn-github btn-social"><i class="fa fa-github"></i>Sign in with GitHub</a>
+                <a href="auth/linkedin" class="btn btn-block btn-linkedin btn-social"><i class="fa fa-linkedin"></i>Sign in with Linkedin</a>
+                <a href="auth/instagram" class="btn btn-block btn-instagram btn-social"><i class="fa fa-instagram"></i>Sign in with Instagram</a>
+            </div>
+
+
+            <!-- END LOGIN -->
+
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-5">
+            
+            <!-- SIGNUP -->
+            <form ng-submit="validateSignup()" id="signupForm" class="form-horizontal" method="post">
+              <fieldset>
+                <div id="legend">
+                  <legend class="">Create Account</legend>
+                  <p *ngIf="signupFailure" class="error">{{signupFailure}}</p>
+                  <p *ngIf="signupError" class="error">{{signupError}}</p>
+                </div>
+             
+                <div class="control-group">
+                  <!-- E-mail -->
+                  <label class="control-label" for="email">E-mail</label>
+                  <div class="controls">
+                    <input required type="text" id="email" name="email" placeholder="" class="input-xlarge" ng-model="email">
+                    <p class="help-block">Your Email Address will become your username</p>
+                  </div>
+                </div>
+             
+                <div class="control-group">
+                  <!-- Password-->
+                  <label class="control-label" for="password">Password</label>
+                  <div class="controls">
+                    <input required type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model="password">
+                    <p class="help-block">Your password should be at least 6 characters</p>
+                  </div>
+                </div>
+             
+                <div class="control-group">
+                  <!-- Password -->
+                  <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+                  <div class="controls">
+                    <input required type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge" ng-model="passwordConfirm">
+                    <p class="help-block">Please confirm your password</p>
+                  </div>
+                </div>
+             
+                <div class="control-group">
+                  <!-- Button -->
+                  <div class="controls">
+                    <input type="submit" class="btn btn-success" value="Sign Up">
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+            <!-- END SINGUP -->
+
+          </div>
+  
+  </div>
+

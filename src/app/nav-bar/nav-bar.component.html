@@ -12,8 +12,8 @@
         <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li *ngIf="userEmail"><a href="#/user/favorites">Favorites</a></li>
-            <li *ngIf="!userEmail"><a href="#/login" >Login or Sign Up</a></li>
+            <li *ngIf="userEmail"><a href="/user/favorites">Favorites</a></li>
+            <li *ngIf="!userEmail"><a routerLink="/home/login" >Login or Sign Up</a></li>
             <li *ngIf="userEmail"><a href="/auth/logout" >Logout ({{userEmail}})</a></li>
           </ul>
         </li>

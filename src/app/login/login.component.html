@@ -4,17 +4,17 @@
           <div class="col-md-5" >
 
             <!-- LOGIN -->
-            <form ng-submit="signIn()" id="signinForm" class="form-horizontal" method="get">
+            <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" id="signinForm" class="form-horizontal" method="get">
               <fieldset>
                 <div id="legend">
                   <legend class="">Login</legend>
-                  <p *ngIf="signinFailure" class="error">{{signinFailure}}</p>
+                  <p *ngFor="let error of loginError" class="error">{{error.msg}}</p>
                 </div>
                 <div class="control-group">
                   <!-- E-mail -->
                   <label class="control-label" for="email">E-mail / Username</label>
                   <div class="controls">
-                    <input type="text" id="email" name="email" placeholder="" class="input-xlarge" autofocus ng-model="signinEmail">
+                    <input type="text" id="email" name="email" ngModel #email="ngModel" placeholder="" class="input-xlarge" autofocus ng-model="signinEmail">
                     <p>Email Address used during account creation</p>
                   </div>
                 </div>
@@ -23,7 +23,7 @@
                   <!-- Password-->
                   <label class="control-label" for="password">Password</label>
                   <div class="controls">
-                    <input type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model="signinPassword">
+                    <input type="password" id="password" name="password" ngModel #password="ngModel" placeholder="" class="input-xlarge" ng-model="signinPassword">
                     <p>Forgot password?</p>
                   </div>
                 </div>
@@ -51,21 +51,19 @@
           </div>
           <div class="col-md-2"></div>
           <div class="col-md-5">
-            
             <!-- SIGNUP -->
-            <form ng-submit="validateSignup()" id="signupForm" class="form-horizontal" method="post">
+            <form #signupForm="ngForm" (ngSubmit)="onSignup(signupForm)" id="signupForm" class="form-horizontal" method="post">
               <fieldset>
                 <div id="legend">
                   <legend class="">Create Account</legend>
-                  <p *ngIf="signupFailure" class="error">{{signupFailure}}</p>
-                  <p *ngIf="signupError" class="error">{{signupError}}</p>
+                  <p *ngFor="let error of signupError" class="error">{{error.msg}}</p>
                 </div>
              
                 <div class="control-group">
                   <!-- E-mail -->
                   <label class="control-label" for="email">E-mail</label>
                   <div class="controls">
-                    <input required type="text" id="email" name="email" placeholder="" class="input-xlarge" ng-model="email">
+                    <input required type="text" id="email" name="email" ngModel #email="ngModel" placeholder="" class="input-xlarge" ng-model="email">
                     <p class="help-block">Your Email Address will become your username</p>
                   </div>
                 </div>
@@ -74,7 +72,7 @@
                   <!-- Password-->
                   <label class="control-label" for="password">Password</label>
                   <div class="controls">
-                    <input required type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model="password">
+                    <input required type="password" id="password" name="password" ngModel #password="ngModel" placeholder="" class="input-xlarge" ng-model="password">
                     <p class="help-block">Your password should be at least 6 characters</p>
                   </div>
                 </div>
@@ -83,7 +81,7 @@
                   <!-- Password -->
                   <label class="control-label"  for="password_confirm">Password (Confirm)</label>
                   <div class="controls">
-                    <input required type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge" ng-model="passwordConfirm">
+                    <input required type="password" id="password_confirm" name="password_confirm" ngModel #password_confirm="ngModel" placeholder="" class="input-xlarge" ng-model="passwordConfirm">
                     <p class="help-block">Please confirm your password</p>
                   </div>
                 </div>

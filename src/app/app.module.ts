@@ -12,6 +12,7 @@ import { SearchComponent } from './search/search/search.component';
 import { MovieCardComponent } from './movie-card/movie-card/movie-card.component';
 import { ResultFilterPipe } from 'app/pipes/result-filter.pipe';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { LoginComponent } from './login/login.component';
     SharedModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

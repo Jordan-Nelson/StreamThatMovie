@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Movie } from '../shared/movie';
-import { MovieInfoService } from '../shared/movie-info.service';
+import { Movie } from 'app/models/movie';
+import { MovieInfoService } from 'app/services/movie-info.service';
 
 
 @Component({

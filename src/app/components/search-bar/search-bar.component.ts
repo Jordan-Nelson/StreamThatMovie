@@ -13,7 +13,7 @@ export class SearchBarComponent implements OnInit {
   constructor(private router: Router) {
     this.search = function(query) {
       console.log(query)
-      this.router.navigateByUrl('search/' + query);
+      this.router.navigateByUrl('home/search/' + query);
 
     }
   }

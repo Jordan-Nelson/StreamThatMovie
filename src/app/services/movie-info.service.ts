@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { Movie } from 'app/shared/movie';
+import { Movie } from 'app/models/movie';
 
 @Injectable()
 export class MovieInfoService {
@@ -15,86 +15,84 @@ export class MovieInfoService {
   private similarUrl = this.baseUrl + 'movie/" + id + "/similar?api_key=' + this.key;
   private popularMoviesUrl = this.baseUrl + 'discover/movie?api_key=' + this.key + '&sort_by=popularity.desc&vote_count.gte=100'
   private gRatedMoviesUrl = this.baseUrl + 'discover/movie?api_key=' + this.key +
-      '&certification_country=US&certification.lte=G&sort_by=popularity.desc&vote_count.gte=100';
+  '&certification_country=US&certification.lte=G&sort_by=popularity.desc&vote_count.gte=100';
   private comedyMoviesURL = this.baseUrl + 'discover/movie?api_key=' + this.key +
-      '&with_genres=35&sort_by=popularity.desc&vote_count.gte=100';
+  '&with_genres=35&sort_by=popularity.desc&vote_count.gte=100';
   private topRatedMoviesURL = this.baseUrl + 'discover/movie?api_key=' + this.key +
-      '&sort_by=vote_average.desc&vote_count.gte=1000';
+  '&sort_by=vote_average.desc&vote_count.gte=1000';
   private topCurrentMoviesURL = this.baseUrl + 'discover/movie?api_key=' + this.key +
-      '&sort_by=vote_average.desc&vote_count.gte=100&primary_release_year=' + this.currentYear;
+  '&sort_by=vote_average.desc&vote_count.gte=100&primary_release_year=' + this.currentYear;
   private topScifiMoviesURL = this.baseUrl + 'discover/movie?api_key=' + this.key +
-      '&with_genres=878&sort_by=vote_average.desc&vote_count.gte=1000';
-  // private similarMoviesURL = this.baseUrl + 'movie/'
+  '&with_genres=878&sort_by=vote_average.desc&vote_count.gte=1000';
 
   constructor(private http: Http) { }
 
   getMovies(query): Observable<Movie[]> {
     return this.http.get(this.searchUrl + query)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   getCategory(category): Observable<Movie[]> {
     switch (category) {
-        case 'popular': return this.getPopularMovies();
-        case 'g-rated': return this.getGRatedMovies();
-        case 'comedy': return this.getComedyMovies();
-        case 'top-rated': return this.getTopRated();
-        case 'current': return this.getCurrentMovies();
-        case 'sci-fi': return this.getScifiMovies();
-        default: return null;
+      case 'popular': return this.getPopularMovies();
+      case 'g-rated': return this.getGRatedMovies();
+      case 'comedy': return this.getComedyMovies();
+      case 'top-rated': return this.getTopRated();
+      case 'current': return this.getCurrentMovies();
+      case 'sci-fi': return this.getScifiMovies();
+      default: return null;
     }
   }
 
   getSimilarMovies(id): Observable<Movie[]> {
     return this.http.get(this.baseUrl + 'movie/' + id + '/similar?api_key=' + this.key)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   getPopularMovies(): Observable<Movie[]> {
     return this.http.get(this.popularMoviesUrl)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   getGRatedMovies(): Observable<Movie[]> {
     return this.http.get(this.gRatedMoviesUrl)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   getComedyMovies(): Observable<Movie[]> {
     return this.http.get(this.comedyMoviesURL)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   getTopRated(): Observable<Movie[]> {
     return this.http.get(this.topRatedMoviesURL)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   getCurrentMovies(): Observable<Movie[]> {
     return this.http.get(this.topCurrentMoviesURL)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   getScifiMovies(): Observable<Movie[]> {
     return this.http.get(this.topScifiMoviesURL)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     const body = res.json();
-    console.log(body)
-    return body || { };
+    return body || {};
   }
 
-  private handleError (error: Response | any) {
+  private handleError(error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';

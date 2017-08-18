@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "app/shared/user";
-import { UserService } from "app/shared/user.service";
+import { UserService } from "app/services/user.service";
 import { NgForm } from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   onLogin(loginForm: NgForm) {
     this.UserService.login(loginForm.value)
     .subscribe((resp: any) => {
-      console.log(resp)
       this.Router.navigateByUrl('/')
     }, err => {
       this.loginError = err.json().errors;
@@ -43,8 +42,6 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-
-    // this.user = this.UserService.user.subscribe()
 
   }
 

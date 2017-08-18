@@ -8,7 +8,7 @@
               <fieldset>
                 <div id="legend">
                   <legend class="">Login</legend>
-                  <p *ngFor="let error of loginError" class="error">{{error.msg}}</p>
+                  <p *ngFor="let error of loginError" class="alert-danger container-fluid">{{error.msg}}</p>
                 </div>
                 <div class="control-group">
                   <!-- E-mail -->
@@ -56,7 +56,7 @@
               <fieldset>
                 <div id="legend">
                   <legend class="">Create Account</legend>
-                  <p *ngFor="let error of signupError" class="error">{{error.msg}}</p>
+                  <p *ngFor="let error of signupError" class="alert-danger container-fluid">{{error.msg}}</p>
                 </div>
              
                 <div class="control-group">

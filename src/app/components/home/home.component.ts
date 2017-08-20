@@ -9,7 +9,7 @@ import { MovieInfoService } from 'app/services/movie-info.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-// export class SearchComponent implements OnInit {
+
 export class HomeComponent implements OnInit {
 
   results: Object;
@@ -25,38 +25,32 @@ export class HomeComponent implements OnInit {
 
     this.movieInfoService.getPopularMovies()
       .subscribe(
-        popularMovies => this.popularMovies = popularMovies,
-        // error =>  this.errorMessage = <any>error
-    );
+        popularMovies => this.popularMovies = popularMovies
+      );
 
     this.movieInfoService.getGRatedMovies()
       .subscribe(
-        gRatedMovies => this.gRatedMovies = gRatedMovies,
-        // error =>  this.errorMessage = <any>error
+        gRatedMovies => this.gRatedMovies = gRatedMovies
     );
 
     this.movieInfoService.getComedyMovies()
       .subscribe(
-        comedyMovies => this.comedyMovies = comedyMovies,
-        // error =>  this.errorMessage = <any>error
+        comedyMovies => this.comedyMovies = comedyMovies
     );
 
     this.movieInfoService.getTopRated()
       .subscribe(
-        topRatedMovies => this.topRatedMovies = topRatedMovies,
-        // error =>  this.errorMessage = <any>error
+        topRatedMovies => this.topRatedMovies = topRatedMovies
     );
 
     this.movieInfoService.getCurrentMovies()
       .subscribe(
-        currentMovies => this.currentMovies = currentMovies,
-        // error =>  this.errorMessage = <any>error
+        currentMovies => this.currentMovies = currentMovies
     );
 
     this.movieInfoService.getScifiMovies()
       .subscribe(
-        scifiMovies => this.scifiMovies = scifiMovies,
-        // error =>  this.errorMessage = <any>error
+        scifiMovies => this.scifiMovies = scifiMovies
     );
 
    }

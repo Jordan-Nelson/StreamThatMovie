@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from 'app/components/home/home.component';
 import { SearchComponent } from 'app/components/search/search.component';
 import { LoginComponent } from 'app/components/login/login.component';
+import { FavoritesComponent } from "app/components/favorites/favorites.component";
+import { UserService } from "app/services/user.service";
+import { AuthGuard } from "app/services/auth.gaurd";
 
 const routes: Routes = [
   {
@@ -12,6 +15,11 @@ const routes: Routes = [
   {
     path: 'home/login',
     component: LoginComponent
+  },
+  {
+    path: 'home/favorites',
+    component: FavoritesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'home/search/:query',

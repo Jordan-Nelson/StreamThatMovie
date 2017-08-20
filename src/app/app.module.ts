@@ -18,6 +18,9 @@ import { MovieService } from './services/movie.service';
 import { MovieInfoService } from './services/movie-info.service';
 import { SummaryPipe } from './pipes/summary.pipe';
 import { HttpModule } from "@angular/http";
+import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { AuthGuard } from "app/services/auth.gaurd";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { HttpModule } from "@angular/http";
     MovieCardComponent,
     ResultFilterPipe,
     LoginComponent,
-    SummaryPipe
+    SummaryPipe,
+    MovieListComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,7 @@ import { HttpModule } from "@angular/http";
     MaterialModule,
     HttpModule
   ],
-  providers: [UserService, MovieService, MovieInfoService],
+  providers: [UserService, MovieService, MovieInfoService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

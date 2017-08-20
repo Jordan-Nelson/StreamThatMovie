@@ -64,6 +64,16 @@ export class UserService {
       })
   }
 
+  getFavoriteList(): Observable<Response> {
+    let options = new RequestOptions();
+    options.withCredentials = true;
+    return this.http.get(this.serverURL + 'api/user/favoriteList', options)
+      .map(this.extractData)
+      .catch(err => {
+        return Observable.of({ message: 'User is not autheticated' })
+      })
+  }
+
   private extractData(res: Response) {
     const body = res.json();
     return body || {};

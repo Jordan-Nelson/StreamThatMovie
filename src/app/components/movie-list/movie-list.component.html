@@ -1,0 +1,8 @@
+<div id="no-results" [hidden]="(movies | resultFilter)?.length > 0">
+  <p>{{noResultMessage}}</p>
+</div>
+<div id="search-results" class="row results"> 
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let movie of movies | resultFilter"> 
+    <stream-movie-card [result]="movie"></stream-movie-card>
+  </div>
+</div>

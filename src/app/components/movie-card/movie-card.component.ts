@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { MovieService } from "app/services/movie.service";
 
 @Component({
@@ -14,18 +15,26 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit() {
     this.getUserRating();
-    this.getFavorite()
+    this.getFavorite();
+    this.getAvgRating();
   }
 
   rateMovie(rating: number) {
-    this.MovieService.rateMovie(this.result.id, rating).subscribe(resp => {
-      this.result.userRating = resp;
+    this.MovieService.rateMovie(this.result.id, rating).subscribe((resp: any) => {
+      this.result.userRating = resp.rating;
+      this.getAvgRating();
     })
   }
 
   getUserRating() {
-    this.MovieService.getMovieRating(this.result.id).subscribe(resp => {
-      this.result.userRating = resp;
+    this.MovieService.getRating(this.result.id).subscribe((resp: any) => {
+      this.result.userRating = resp.rating;
+    })
+  }
+
+  getAvgRating() {
+    this.MovieService.getAvgRating(this.result.id).subscribe((resp: any) => {
+      this.result.avgRating = resp.rating;
     })
   }
 

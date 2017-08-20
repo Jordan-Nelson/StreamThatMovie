@@ -13,8 +13,8 @@
     <p>{{result.overview | summary: 300}}</p> 
 
     <div class="bottom full-width" style="padding-bottom:40px">
-        <div *ngIf="result.rateMovie_averageRating > 0">Average Rating: {{result.rateMovie_averageRating | number: 1}} Stars</div>
-        <div *ngIf="!result.rateMovie_averageRating">No user ratings yet</div>
+        <div *ngIf="result.avgRating > 0">Average Rating: {{result.avgRating | number: '1.0-1'}} Stars</div>
+        <div *ngIf="!result.avgRating">No user ratings yet</div>
         <span (click)="rateMovie(1); $event.stopPropagation();">
             <span *ngIf="!result.userRating || result.userRating == 0" class="glyphicon glyphicon-star-empty"></span>
             <span *ngIf="result.userRating >= 1" class="glyphicon glyphicon-star"></span>

@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from "@angular/http";
+
+import { MyHammerConfig } from './app.config';
+import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,10 +21,13 @@ import { UserService } from './services/user.service';
 import { MovieService } from './services/movie.service';
 import { MovieInfoService } from './services/movie-info.service';
 import { SummaryPipe } from './pipes/summary.pipe';
-import { HttpModule } from "@angular/http";
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
-import { AuthGuard } from "app/services/auth.gaurd";
+import { AuthGuard } from "app/guards/auth.guard";
+import { MovieSearchResolve } from "app/resolvers/movie-search.resolve";
+import { MovieCategoryResolve } from "app/resolvers/movie-categories.resolve";
+import { ConstantsService } from './services/constants.service';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +51,16 @@ import { AuthGuard } from "app/services/auth.gaurd";
     MaterialModule,
     HttpModule
   ],
-  providers: [UserService, MovieService, MovieInfoService, AuthGuard],
+  providers: [
+    UserService, 
+    MovieService, 
+    MovieInfoService, 
+    AuthGuard, 
+    MovieSearchResolve,
+    MovieCategoryResolve,
+    ConstantsService,
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

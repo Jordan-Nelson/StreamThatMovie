@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { Movie } from 'app/models/movie';
+import { MovieList } from 'app/models/movieList';
 
 @Injectable()
 export class MovieInfoService {
@@ -27,13 +27,13 @@ export class MovieInfoService {
 
   constructor(private http: Http) { }
 
-  getMovies(query): Observable<Movie[]> {
+  getMovies(query): Observable<MovieList> {
     return this.http.get(this.searchUrl + query)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getCategory(category): Observable<Movie[]> {
+  getCategory(category): Observable<MovieList> {
     switch (category) {
       case 'popular': return this.getPopularMovies();
       case 'g-rated': return this.getGRatedMovies();
@@ -45,43 +45,43 @@ export class MovieInfoService {
     }
   }
 
-  getSimilarMovies(id): Observable<Movie[]> {
+  getSimilarMovies(id): Observable<MovieList> {
     return this.http.get(this.baseUrl + 'movie/' + id + '/similar?api_key=' + this.key)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getPopularMovies(): Observable<Movie[]> {
+  getPopularMovies(): Observable<MovieList> {
     return this.http.get(this.popularMoviesUrl)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getGRatedMovies(): Observable<Movie[]> {
+  getGRatedMovies(): Observable<MovieList> {
     return this.http.get(this.gRatedMoviesUrl)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getComedyMovies(): Observable<Movie[]> {
+  getComedyMovies(): Observable<MovieList> {
     return this.http.get(this.comedyMoviesURL)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getTopRated(): Observable<Movie[]> {
+  getTopRated(): Observable<MovieList> {
     return this.http.get(this.topRatedMoviesURL)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getCurrentMovies(): Observable<Movie[]> {
+  getCurrentMovies(): Observable<MovieList> {
     return this.http.get(this.topCurrentMoviesURL)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getScifiMovies(): Observable<Movie[]> {
+  getScifiMovies(): Observable<MovieList> {
     return this.http.get(this.topScifiMoviesURL)
       .map(this.extractData)
       .catch(this.handleError);

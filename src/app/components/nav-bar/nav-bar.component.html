@@ -1,16 +1,22 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Stream That Movie</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+      <a class="navbar-brand" routerLink="/">Stream That Movie</a>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="navbar">
       <ul class="nav navbar-nav navbar-right">
 
         <li><a routerLink="/home">Home</a></li>
-        <li><a *ngIf="!UserService?.currentUser?.email" href="/home/login">Login or Signup</a></li>
+        <li><a *ngIf="!UserService?.currentUser?.email" routerLink="/home/login">Login or Signup</a></li>
         <li class="dropdown" *ngIf="UserService?.currentUser?.email">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{UserService?.currentUser?.email}}<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{UserService?.currentUser?.email}}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a routerLink="/home/favorites">Favorites</a></li>
             <li><a (click)="logout()">Logout</a></li>

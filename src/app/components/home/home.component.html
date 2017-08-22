@@ -1,40 +1,10 @@
 <stream-search-bar></stream-search-bar>
-<div class="container welcome" align="center">Welcome to Stream That Movie. Use the search bar above to find a movie.</div>
+<div class="container welcome" align="center">Welcome to Stream That Movie! Use the search bar above to find a movie, or browse a cateogry below.</div>
 <div class="row movie-collage">
-  <a href="/home/category/popular">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4>Most Popular Movies</h4>
-      <img class="col-xs-15" *ngFor="let movie of popularMovies?.results" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}"/>
-    </div>
-  </a>
-  <a href="/home/category/g-rated">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4>Most Popular Kids Movies</h4>
-      <img class="col-xs-15" *ngFor="let movie of gRatedMovies?.results" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}"/>
-    </div>
-  </a>
-  <a href="/home/category/comedy">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4>Most Popular Comedies</h4>
-      <img class="col-xs-15" *ngFor="let movie of comedyMovies?.results" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}"/>
-    </div>
-  </a>
-  <a href="/home/category/top-rated">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4>Top Rated Movies</h4>
-      <img class="col-xs-15" *ngFor="let movie of topRatedMovies?.results" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}"/>
-    </div>
-  </a>
-  <a href="/home/category/current">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4>Top Rated from 2016</h4>
-      <img class="col-xs-15" *ngFor="let movie of currentMovies?.results" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}"/>
-    </div>
-  </a>
-  <a href="/home/category/sci-fi">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4>Science Fiction Movies</h4>
-      <img class="col-xs-15" *ngFor="let movie of scifiMovies?.results" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}"/>
-    </div>
-  </a>
+    <a *ngFor="let movieCategory of movieCategories" href="{{'/home/category/' + movieCategory.category}}">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <h5>{{movieCategory.categoryTitle}}</h5>
+        <img class="col-xs-15" *ngFor="let movie of movieCategory?.results" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}"/>
+      </div>
+    </a>
 </div>

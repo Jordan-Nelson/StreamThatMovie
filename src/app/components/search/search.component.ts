@@ -8,6 +8,7 @@ import { MovieInfoService } from 'app/services/movie-info.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  movieData: any;
   results: any;
   params: any;
   responseData: Object;
@@ -15,24 +16,7 @@ export class SearchComponent implements OnInit {
   constructor(private route: ActivatedRoute, private movieInfoService: MovieInfoService) {
 
     this.route.params.subscribe( params => {
-      this.params = params;
-      if (this.params.query) {
-        this.movieInfoService.getMovies(this.params.query)
-          .subscribe(
-            responseData => this.responseData = responseData
-        );
-      } else if (this.params.category) {
-        this.movieInfoService.getCategory(this.params.category)
-          .subscribe(
-            responseData => this.responseData = responseData
-        );
-      } else if (this.params.similarID) {
-        this.movieInfoService.getSimilarMovies(this.params.similarID)
-          .subscribe(
-            responseData => this.responseData = responseData
-        );
-      }
-
+      this.movieData = this.route.snapshot.data['movieData'];
      });
   }
 

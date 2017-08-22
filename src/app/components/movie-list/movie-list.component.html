@@ -1,4 +1,4 @@
-<div id="no-results" [hidden]="(movies | resultFilter)?.length > 0">
+<div id="no-results" [hidden]="!movies || (movies | resultFilter)?.length > 0">
   <p>{{noResultMessage}}</p>
 </div>
 <div id="search-results" class="row results"> 

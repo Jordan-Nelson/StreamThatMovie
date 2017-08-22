@@ -57,4 +57,8 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  test() {
+    alert('test');
+  }
+
 }

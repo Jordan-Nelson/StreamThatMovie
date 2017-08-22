@@ -1,12 +1,12 @@
 <div class="movie-poster-container">
-<img class="full-width" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + result.poster_path}}" (click)="clickPoster()" (mouseover)="showCover = true">
-<div [hidden]="!showCover" (mouseleave)="showCover = false" class="movie-poster-cover">
+<img class="full-width" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + result.poster_path}}" (tap)="showCover = !showCover" (mouseover)="showCover = true">
+<div [hidden]="!showCover" (mouseleave)="showCover = false" (tap)="showCover = !showCover" class="movie-poster-cover">
     <p class="right mouse-change" style="float:right" *ngIf="!result.favorite" 
-        (click)="favoriteMovie(); $event.stopPropagation();">
+        (click)="favoriteMovie(); $event.stopPropagation();" (tap)="favoriteMovie(); $event.stopPropagation();">
         <span title="Save to Favorites" class="glyphicon glyphicon-heart-empty"></span>
     </p>
     <p class="right mouse-change" style="float:right" *ngIf="result.favorite" 
-        (click)="deleteFavorite(); $event.stopPropagation();">
+        (click)="deleteFavorite(); $event.stopPropagation();" (tap)="deleteFavorite(); $event.stopPropagation();">
         <span title="Remove from Favorites" class="glyphicon glyphicon-heart"></span>
     </p>
     <h2>{{result.title}} ({{result.release_date | date: 'yyyy'}})</h2>
@@ -15,32 +15,15 @@
     <div class="bottom full-width" style="padding-bottom:40px">
         <div *ngIf="result.avgRating > 0">Average Rating: {{result.avgRating | number: '1.0-1'}} Stars</div>
         <div *ngIf="!result.avgRating">No user ratings yet</div>
-        <span (click)="rateMovie(1); $event.stopPropagation();">
-            <span *ngIf="!result.userRating || result.userRating == 0" class="glyphicon glyphicon-star-empty"></span>
-            <span *ngIf="result.userRating >= 1" class="glyphicon glyphicon-star"></span>
-        </span>
-        <span (click)="rateMovie(2); $event.stopPropagation();">
-            <span *ngIf="!result.userRating || result.userRating <= 1" class="glyphicon glyphicon-star-empty"></span>
-            <span *ngIf="result.userRating >= 2" class="glyphicon glyphicon-star"></span>
-        </span>
-        <span (click)="rateMovie(3); $event.stopPropagation();">
-            <span *ngIf="!result.userRating || result.userRating <= 2" class="glyphicon glyphicon-star-empty"></span>
-            <span *ngIf="result.userRating >= 3" class="glyphicon glyphicon-star"></span>
-        </span>
-        <span (click)="rateMovie(4); $event.stopPropagation();">
-            <span *ngIf="!result.userRating || result.userRating <= 3" class="glyphicon glyphicon-star-empty"></span>
-            <span *ngIf="result.userRating >= 4" class="glyphicon glyphicon-star"></span>
-        </span>
-        <span (click)="rateMovie(5); $event.stopPropagation();">
-            <span *ngIf="!result.userRating || result.userRating <= 4" class="glyphicon glyphicon-star-empty"></span>
-            <span *ngIf="result.userRating >= 5" class="glyphicon glyphicon-star"></span>
-        </span>
-        
+        <span *ngFor="let i of [1,2,3,4,5]" (click)="rateMovie(i); $event.stopPropagation();" (tap)="rateMovie(i); $event.stopPropagation();">
+            <span *ngIf="!result.userRating || result.userRating <= i-1" class="glyphicon glyphicon-star-empty"></span>
+            <span *ngIf="result.userRating >= i" class="glyphicon glyphicon-star"></span>
+        </span>        
     </div>
     <p class="bottom left mouse-change" ng-repeat="source in (result.sources.purchase_web_sources) | sourceFilter: ['youtube_purchase']" >
     <a href="{{source?.link}}" target="_blank"><span (click)="$event.stopPropagation();" title="Watch Trailer"class="glyphicon glyphicon-film"></span></a>
     </p>
-    <p class="bottom right mouse-change"><a href="/home/similar/{{result.id}}"><span title="find similar movie"class="glyphicon glyphicon-search"></span></a></p>
+    <p class="bottom right mouse-change"><a (tap)="$event.stopPropagation()" href="/home/similar/{{result.id}}"><span title="find similar movie"class="glyphicon glyphicon-search"></span></a></p>
 </div>
 </div>
 

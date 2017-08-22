@@ -23,7 +23,8 @@ export class NavBarComponent implements OnInit {
   }
 
   delete() {
-    this.UserService.delete().subscribe();
+    let confirmDelete = confirm('Are you sure you would like to delete your account?')
+    confirmDelete? this.UserService.delete().subscribe(): null;
   }
 
 }

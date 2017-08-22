@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "app/shared/user";
+import { User } from "app/models/user";
 import { UserService } from "app/services/user.service";
 import { NgForm } from '@angular/forms';
 import {Router} from '@angular/router';
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     this.UserService = UserService;
     this.Router = Router;
 
-  }
+  } 
 
   onLogin(loginForm: NgForm) {
     this.UserService.login(loginForm.value)

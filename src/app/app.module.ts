@@ -27,6 +27,9 @@ import { AuthGuard } from "app/guards/auth.guard";
 import { MovieSearchResolve } from "app/resolvers/movie-search.resolve";
 import { MovieCategoryResolve } from "app/resolvers/movie-categories.resolve";
 import { ConstantsService } from './services/constants.service';
+import { ArraySortPipe } from './pipes/array-sort.pipe';
+import { MovieListPreviewComponent } from './components/movie-list-preview/movie-list-preview.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -41,7 +44,13 @@ import { ConstantsService } from './services/constants.service';
     LoginComponent,
     SummaryPipe,
     MovieListComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    ArraySortPipe,
+    MovieListPreviewComponent,
+    ConfirmDialogComponent
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

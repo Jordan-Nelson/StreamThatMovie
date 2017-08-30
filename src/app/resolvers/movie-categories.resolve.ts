@@ -9,6 +9,7 @@ export class MovieCategoryResolve implements Resolve<any> {
 
   resolve() {
     let promises = []
+    promises.push(this.movieInfoService.getNetflixMovies().toPromise().then((resp: any) => Object.assign(resp, {category: 'netflix', categoryTitle: 'Most Popular on Netflix'})));        
     promises.push(this.movieInfoService.getCategory('popular').toPromise().then((resp: any) => Object.assign(resp, {category: 'popular', categoryTitle: 'Most Popular Movies'})));
     promises.push(this.movieInfoService.getCategory('g-rated').toPromise().then((resp: any) => Object.assign(resp, {category: 'g-rated', categoryTitle: 'Top Rated Movies for Kids'})));
     promises.push(this.movieInfoService.getCategory('comedy').toPromise().then((resp: any) => Object.assign(resp, {category: 'comedy', categoryTitle: 'Top Rated Comedies'})));

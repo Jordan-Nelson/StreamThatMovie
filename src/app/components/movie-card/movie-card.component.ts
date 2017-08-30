@@ -9,14 +9,11 @@ import { MovieService } from "app/services/movie.service";
 })
 export class MovieCardComponent implements OnInit {
   @Input() result: any;
-  @Input() email: string;
+  showCover: boolean;
 
   constructor(private MovieService: MovieService) { }
 
   ngOnInit() {
-    this.getUserRating();
-    this.getFavorite();
-    this.getAvgRating();
   }
 
   rateMovie(rating: number) {
@@ -39,7 +36,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   favoriteMovie() {
-    this.MovieService.favoriteMovie(this.result.id).subscribe(resp => {
+    this.MovieService.favoriteMovie(this.result).subscribe(resp => {
       resp.status === 201 ? this.result.favorite = true : null;
     })
   }
@@ -57,8 +54,10 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
-  test() {
-    alert('test');
+  getSource() {
+    this.MovieService.getSource(this.result.id).subscribe(resp => {
+      this.result.source = resp;
+    })
   }
 
 }

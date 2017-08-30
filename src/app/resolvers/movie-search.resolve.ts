@@ -10,6 +10,8 @@ export class MovieSearchResolve implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
       if(route.paramMap.get('query')) {
         return this.movieInfoService.getMovies(route.paramMap.get('query'));
+      } else if (route.paramMap.get('category') === 'netflix') {
+        return this.movieInfoService.getNetflixMovies();
       } else if (route.paramMap.get('category')) {
         return this.movieInfoService.getCategory(route.paramMap.get('category'));
       } else if (route.paramMap.get('similarID')) {

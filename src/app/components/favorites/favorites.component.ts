@@ -8,11 +8,9 @@ import { UserService } from "app/services/user.service";
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent implements OnInit {
-  favoriteMovies: any;
+  movieData: any;
 
-  constructor(private userService: UserService) { 
-    this.favoriteMovies = null;
-  }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.getFavoriteList();
@@ -20,7 +18,7 @@ export class FavoritesComponent implements OnInit {
 
   getFavoriteList() {
     this.userService.getFavoriteList().subscribe(resp => {
-      this.favoriteMovies = resp;
+      this.movieData = resp;
     })
   }
 

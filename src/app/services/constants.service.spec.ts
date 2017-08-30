@@ -12,4 +12,7 @@ describe('ConstantsService', () => {
   it('should be created', inject([ConstantsService], (service: ConstantsService) => {
     expect(service).toBeTruthy();
   }));
+  it('should have an API endpoint', inject([ConstantsService], (service: ConstantsService) => {
+    expect(service.API_ENDPOINT).toBeTruthy();
+  }));
 });

@@ -1,0 +1,6 @@
+<h2 md-dialog-title>{{data.title}}</h2>
+<md-dialog-content>{{data.content}}</md-dialog-content>
+<md-dialog-actions align="center">
+  <button (click)="data.confirm.click()" md-raised-button color="primary" md-dialog-close>{{data.confirm.text}}</button>    
+  <button (click)="data.cancel.click()" md-button color="primary" md-dialog-close>{{data.cancel.text}}</button>
+</md-dialog-actions>

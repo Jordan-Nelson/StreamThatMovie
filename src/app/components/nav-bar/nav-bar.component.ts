@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "app/services/user.service";
+import { MdDialog } from "@angular/material";
+import { ConfirmDialogComponent } from "app/components/confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'stream-nav-bar',
@@ -8,9 +10,9 @@ import { UserService } from "app/services/user.service";
 })
 export class NavBarComponent implements OnInit {
   currentUser: {};
-  UserService: UserService;
+  UserService: UserService
 
-  constructor(UserService: UserService) {
+  constructor(UserService: UserService, private mdDialog: MdDialog) { 
     this.UserService = UserService;
   }
 
@@ -19,12 +21,47 @@ export class NavBarComponent implements OnInit {
   }
 
   logout() {
-    this.UserService.logout().subscribe();
+    let that = this;
+    this.mdDialog.open(ConfirmDialogComponent, {
+      disableClose: true,
+      data: {
+        title: 'Logout',
+        content: 'Are you sure you would like to logout?',
+        confirm: {
+          text: 'Yeah',
+          click: function () {
+            that.UserService.logout().subscribe();
+          }
+        },
+        cancel: {
+          text: 'Not now',
+          click: function () {
+          }
+        }
+      }
+    });
   }
 
   delete() {
-    let confirmDelete = confirm('Are you sure you would like to delete your account?')
-    confirmDelete? this.UserService.delete().subscribe(): null;
+    let that = this;
+    this.mdDialog.open(ConfirmDialogComponent, {
+      disableClose: true,
+      data: {
+        title: 'Delete Account',
+        content: 'Are you sure you would like to delete your account? This cannot be undone!',
+        confirm: {
+          text: 'Delete Account',
+          click: function () {
+            that.UserService.delete().subscribe();
+          }
+        },
+        cancel: {
+          text: 'Nope',
+          click: function () {
+          }
+        }
+      }
+    });
   }
 
 }

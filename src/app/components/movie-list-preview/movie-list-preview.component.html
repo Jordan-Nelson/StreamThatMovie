@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col col-xs-2 hidden-xs hidden-sm hidden-md"></div>
+    <div class="col col-xs-12 col-md-3 show-small">
+        <h4>{{title}}</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-xs-2 hidden-xs hidden-sm hidden-md"></div>
+    <div class="col col-xs-4 col-sm-2 col-md-2 col-lg-1 show-small" *ngFor="let movie of ((movies | resultFilter) | arraySort : 'popularity').slice(0,2)">
+        <img class="movie-poster-image" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}">
+    </div>
+    <div class="col col-xs-4 col-sm-2 col-md-2 col-lg-1 hidden-xs" *ngFor="let movie of ((movies | resultFilter) | arraySort : 'popularity').slice(2,5)">
+        <img class="movie-poster-image" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}">
+    </div>
+    <div class="col col-xs-4 col-sm-2 col-md-2 col-lg-1 hidden-xs hidden-sm hidden-md" *ngFor="let movie of ((movies | resultFilter) | arraySort : 'popularity').slice(5,7)">
+        <img class="movie-poster-image" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}">
+    </div>
+    <div class="col col-xs-4 col-sm-2 col-md-2 col-lg-1" *ngFor="let movie of ((movies | resultFilter) | arraySort : 'popularity').slice(7,8)">
+        <div class="img-wrapper">
+            <img class="movie-poster-image" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}">
+            <div class="img-overlay">
+                <button md-fab routerLink="/home/category/{{link}}"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="col col-xs-2 hidden-xs hidden-sm hidden-md"></div>
+</div>

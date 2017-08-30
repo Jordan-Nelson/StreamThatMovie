@@ -19,11 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "stream",
       "styles": [
-        "styles.scss",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/bootstrap-social/assets/css/font-awesome.css",
         "../node_modules/bootstrap-social/bootstrap-social.css",
-        "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
+        "./styles/ng-material-custom.scss",
+        "./styles/_variables.scss",
+        "./styles/styles.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",

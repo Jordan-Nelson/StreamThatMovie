@@ -1,33 +1,47 @@
 <div class="movie-poster-container">
-<img class="full-width" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + result.poster_path}}" (tap)="showCover = !showCover" (mouseover)="showCover = true">
-<div [hidden]="!showCover" (mouseleave)="showCover = false" (tap)="showCover = !showCover" class="movie-poster-cover">
-    <p class="right mouse-change" style="float:right" *ngIf="!result.favorite" 
-        (click)="favoriteMovie(); $event.stopPropagation();" (tap)="favoriteMovie(); $event.stopPropagation();">
-        <span title="Save to Favorites" class="glyphicon glyphicon-heart-empty"></span>
-    </p>
-    <p class="right mouse-change" style="float:right" *ngIf="result.favorite" 
-        (click)="deleteFavorite(); $event.stopPropagation();" (tap)="deleteFavorite(); $event.stopPropagation();">
-        <span title="Remove from Favorites" class="glyphicon glyphicon-heart"></span>
-    </p>
-    <h2>{{result.title}} ({{result.release_date | date: 'yyyy'}})</h2>
-    <p>{{result.overview | summary: 300}}</p> 
 
-    <div class="bottom full-width" style="padding-bottom:40px">
-        <div *ngIf="result.avgRating > 0">Average Rating: {{result.avgRating | number: '1.0-1'}} Stars</div>
-        <div *ngIf="!result.avgRating">No user ratings yet</div>
-        <span *ngFor="let i of [1,2,3,4,5]" (click)="rateMovie(i); $event.stopPropagation();" (tap)="rateMovie(i); $event.stopPropagation();">
+    <!-- Movie Poster -->
+    <img class="movie-poster-image"
+        src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + result.poster_path}}" 
+        (tap)="showCover = !showCover"
+        (mouseover)="showCover = true">
+
+    <!-- Poster Cover -->
+    <div class="movie-poster-cover" [hidden]="!showCover" (mouseleave)="showCover = false" (tap)="showCover = !showCover">
+        <!-- Favorite Button -->
+        <p *ngIf="!result.favorite" class="favorite-button" (tap)="favoriteMovie(); $event.stopPropagation();">
+            <span title="Save to Favorites" class="glyphicon glyphicon-heart-empty"></span>
+        </p>
+        <p *ngIf="result.favorite" class="favorite-button" style="float:right"
+            (tap)="deleteFavorite(); $event.stopPropagation();">
+            <span title="Remove from Favorites" class="glyphicon glyphicon-heart"></span>
+        </p>
+        <!-- Title and Overview -->
+        <h2>{{result.title}} ({{result.release_date | date: 'yyyy'}})</h2>
+        <p>{{result.overview | summary: 300}}</p>
+        
+        <!-- Ratings -->
+        <div class="rating-container">
+            <div *ngIf="result.avgRating > 0">Average Rating: {{result.avgRating | number: '1.0-1'}} Stars</div>
+            <div *ngIf="!result.avgRating">No ratings yet. Be the first!</div>
+            <span *ngFor="let i of [1,2,3,4,5]" (tap)="rateMovie(i); $event.stopPropagation();">
             <span *ngIf="!result.userRating || result.userRating <= i-1" class="glyphicon glyphicon-star-empty"></span>
             <span *ngIf="result.userRating >= i" class="glyphicon glyphicon-star"></span>
-        </span>        
+            </span>
+        </div>
+        <!-- Watch Trailer button -->
+        <!-- <p class="trailer-button" ng-repeat="source in (result.sources.purchase_web_sources) | sourceFilter: ['youtube_purchase']">
+            <a href="{{source?.link}}" target="_blank"><span (click)="$event.stopPropagation();" title="Watch Trailer"class="glyphicon glyphicon-film"></span></a>
+        </p> -->
+        <!-- Find Similar button -->
+        <p class="similar-button"><a (tap)="$event.stopPropagation()" routerLink="/home/similar/{{result.id}}"><span title="find similar movie"class="glyphicon glyphicon-search"></span></a></p>
     </div>
-    <p class="bottom left mouse-change" ng-repeat="source in (result.sources.purchase_web_sources) | sourceFilter: ['youtube_purchase']" >
-    <a href="{{source?.link}}" target="_blank"><span (click)="$event.stopPropagation();" title="Watch Trailer"class="glyphicon glyphicon-film"></span></a>
-    </p>
-    <p class="bottom right mouse-change"><a (tap)="$event.stopPropagation()" href="/home/similar/{{result.id}}"><span title="find similar movie"class="glyphicon glyphicon-search"></span></a></p>
-</div>
+    <div class="stream-container">
+        <a *ngIf="result?.source?.netflix" class="stream-source" href="{{result?.source?.netflix?.link}}" target="_blank"><img src="assets/netflix_logo_3.png"></a>                
+    </div>
+    
 </div>
 
-<div class="row streaming-sources-container">
-<!--<a class="col-xs-3 col-sm-3 col-md-3 col-lg-3" href="{{source.link}}" ng-repeat="source in (result.sources.subscription_web_sources) | sourceFilter: allSources" target="_blank"><img [src]="{{('public/img/' + source.source + '_m_img.jpg')}}"></a>
-<a class="col-xs-3 col-sm-3 col-md-3 col-lg-3" href="{{source.link}}" ng-repeat="source in (result.sources.purchase_web_sources) | sourceFilter: allSources" target="_blank"><img [src]="{{('public/img/' + source.source + '_m_img.jpg')}}"></a>-->
-</div>
+<!-- <div class="row streaming-sources-container">
+    <a *ngIf="result?.source?.netflix" class="col-xs-3 col-sm-3 col-md-3 col-lg-3" href="{{result?.source?.netflix?.link}}" target="_blank"><img style="width:50px;height:50px" src="assets/netflix_icon.jpg"></a>
+</div> -->

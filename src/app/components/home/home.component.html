@@ -1,10 +1,5 @@
 <stream-search-bar></stream-search-bar>
-<div class="container welcome" align="center">Welcome to Stream That Movie! Use the search bar above to find a movie, or browse a cateogry below.</div>
-<div class="row movie-collage">
-    <a *ngFor="let movieCategory of movieCategories" href="{{'/home/category/' + movieCategory.category}}">
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <h5>{{movieCategory.categoryTitle}}</h5>
-        <img class="col-xs-15" *ngFor="let movie of movieCategory?.results" src="{{'https://image.tmdb.org/t/p/w300_and_h450_bestv1/' + movie.poster_path}}"/>
-      </div>
-    </a>
+<div class="container welcome">Welcome to Stream That Movie! Use the search bar above to find a movie, or browse a cateogry below.</div>
+<div *ngFor="let movieCategory of movieCategories">
+    <stream-movie-list-preview [link]="movieCategory?.category" [title]="movieCategory?.categoryTitle"[movies]="movieCategory?.results"></stream-movie-list-preview>    
 </div>

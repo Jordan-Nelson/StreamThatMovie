@@ -1,0 +1,9 @@
+@import 'ng-material-custom';
+
+$primary-color: map-get($custom-theme-primary, 500);
+$primary-color-dark: map-get($custom-theme-primary, 700);
+$primary-color-light: map-get($custom-theme-primary, 100);
+
+$accent-color: map-get($custom-theme-accent, 500);
+$accent-color-dark: map-get($custom-theme-accent, 700);
+$accent-color-light: map-get($custom-theme-accent, 100);
